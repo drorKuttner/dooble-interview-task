@@ -1,0 +1,137 @@
+// variables
+$data-bg-color: grey;
+$user-data-lines-horizontal-padding: 12px;
+$user-border-width: 2px;
+$user-block-width: 250px;
+$user-cont-padding: 12px;
+// used both as users list and search bar text
+$total-width: calc(3 * ((2 * #{$user-border-width}) + #{$user-block-width}));
+
+
+
+// users list
+.users-and-load-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 6px 6px -1px #777777;
+    background-color: #fbfbfb;
+    margin: 0 auto 10px;
+    width: calc(#{$total-width} + #{$user-cont-padding});
+    position: relative;
+    top: 100px;
+
+    .users-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: $total-width;
+        margin: 0 auto 10px;
+        padding: $user-cont-padding;
+
+        // user square
+        .user {
+            width: $user-block-width;
+            height: $user-block-width;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: $user-border-width white solid;
+            flex-direction: column;
+
+            .image {
+                margin-top: 40px;
+                width: 120px;
+                height: 120px;
+                border-radius: 100%;
+            }
+
+            .data {
+                display: flex;
+                flex-direction: column;
+                width: calc(100% - (#{$user-data-lines-horizontal-padding} * 2));
+                background-color: $data-bg-color;
+                height: 50px;
+                color: white;
+                padding: 10px $user-data-lines-horizontal-padding;
+                font-size: 14px;
+                font-weight: 600;
+                .first-line {
+                    display: flex;
+                    align-items: center;
+                    .name {
+                        z-index: 2;
+                    }
+                }
+                .mail {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    // load more button
+    .load-button {
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+.gender-icon-container {
+    display: flex;
+    position: relative;
+    &.is-female {
+        left: -8px;
+        z-index: 1;
+    }
+
+    // grey rectangle to cover the opposite gender icon
+    div {
+        width: 0.7em;
+        height: 1.7em;
+        position: relative;
+        background-color: $data-bg-color;
+    }
+
+    .male-cover {
+        right: 22px;
+    }
+
+    .female-cover {
+        right: 12px;
+    }
+}
+
+// search by filter names
+.search-bar-container {
+    // to make the bar fixed as required
+    z-index: 5;
+    position: fixed;
+    left: calc(50vw - ((#{$total-width} / 2) + #{$user-cont-padding} ));
+
+
+    width: calc(#{$total-width} + #{$user-cont-padding});
+    border-bottom: 1px solid gray;
+    box-shadow: 0 6px 6px -1px #777777;
+    background-color: #f9f9f9;
+    margin: 17px auto;
+    padding-left: 10px;
+
+    // partially override material ui style for making the input field look as required (rectangle shaped and wide)
+    .MuiInput-underline::after, .MuiInput-underline:before {
+        border-bottom: none !important;
+    }
+    .MuiFormControl-root {
+        margin-bottom: 0 !important;
+    }
+}
+
+.spinner {
+    margin: 20px auto;
+}
+
+
+
